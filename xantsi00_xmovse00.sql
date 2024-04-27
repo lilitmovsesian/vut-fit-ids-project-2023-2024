@@ -1246,7 +1246,7 @@ SELECT * FROM "Zlodej_ziskal_povoleni";
 ------------------------------------------------------------------------------------------------------------
 -- Index and explain plan
 
--- Vytvoření indexu pro sloupcу 'datum' a 'kod' v tabulce 'Zlocin'
+-- Vytvoření indexu pro sloupce 'datum' a 'kod' v tabulce 'Zlocin'
 -- kde rok je 2024
 -- pro dotaz "Kdo v roce 2024 spáchal alespoň jeden zločin"
 -- pro sledování aktuálně pracujících zlodějů
@@ -1299,6 +1299,7 @@ GRANT EXECUTE ON Vybaveni_statistika TO xantsi00;
 GRANT EXECUTE ON Zlodej_zebricek TO xantsi00;
 
 --------------------------------------------------------------------------------------------------------------
+-- Materializovaný pohled
 
 -- vytvoření materializovaného pohledu na zlodeje a počet zločinů, které spáchal seřazené podle počtu zločinů s pouzitim joinu
 CREATE MATERIALIZED VIEW Zlodej_zlociny_pocet AS
@@ -1312,6 +1313,8 @@ GRANT ALL ON Zlodej_zlociny_pocet TO xantsi00;
 SELECT * FROM Zlodej_zlociny_pocet;
 DROP MATERIALIZED VIEW Zlodej_zlociny_pocet;
 ------------------------------------------------------------------------------------------------
+-- Select
+
 -- vytvoření klasifikace zlodejů podle proškolení pro typ zločinu a typ vybavení
 WITH klasifikace_podle_skoleni AS (
     SELECT 
@@ -1336,18 +1339,3 @@ SELECT
     END AS klasifikace
 FROM 
     klasifikace_podle_skoleni;
-
-
-
-
- 
-
-
-
-
-
- 
- 
-
-
-
